@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Occidental Mindoro National High School Portal</title>
+
+<style>
+:root {
+  --maroon: #710d25;
+  --dark: #4c0718;
+  --gold: #d5ad62;
+  --white: #ffffff;
+  --bg: #f5f4f4;
+  --text: #292929;
+  --surface: #ffffff;
+  --muted: #666666;
+  --line: #dddddd;
+  --notice: #fff5df;
+  --ok-bg: #e8f6e9;
+  --ok-text: #185c29;
+  --pill-bg: #fff0d4;
+  --pill-text: #885b00;
+  --heading: #710d25;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1a1416;
+    --text: #ece6e7;
+    --surface: #261c1f;
+    --muted: #b9adb0;
+    --line: #43353a;
+    --notice: #3a2f1a;
+    --ok-bg: #16301b;
+    --ok-text: #9be0ac;
+    --pill-bg: #3a2f1a;
+    --pill-text: #e8c47a;
+    --heading: #e7a3b4;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #1a1416;
+  --text: #ece6e7;
+  --surface: #261c1f;
+  --muted: #b9adb0;
+  --line: #43353a;
+  --notice: #3a2f1a;
+  --ok-bg: #16301b;
+  --ok-text: #9be0ac;
+  --pill-bg: #3a2f1a;
+  --pill-text: #e8c47a;
+  --heading: #e7a3b4;
+}
+
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+header {
+  background: var(--maroon);
+  color: white;
+  padding: 16px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 48px;
+  height: 48px;
+  background: white;
+  color: var(--maroon);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.brand h2 { font-size: 17px; }
+.brand small { color: #f0dcae; }
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+nav button {
+  border: none;
+  color: white;
+  background: transparent;
+  padding: 11px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+nav button:hover,
+nav button.active { background: var(--dark); }
+
+.page {
+  display: none;
+  min-height: 75vh;
+  padding: 35px 7%;
+}
+
+.page.active { display: block; }
+
+.hero {
+  background: linear-gradient(120deg, #4c0718, #8b1b37);
+  color: white;
+  padding: 90px 8%;
+  border-radius: 12px;
+}
+
+.hero h1 {
+  font-size: clamp(30px, 5vw, 48px);
+  max-width: 700px;
+  margin: 15px 0;
+}
+
+.hero p {
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+.gold { color: var(--gold); }
+
+.btn {
+  background: var(--maroon);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 8px 5px 8px 0;
+}
+
+.btn:hover { background: var(--dark); }
+
+.btn.gold-btn {
+  background: var(--gold);
+  color: var(--dark);
+}
+
+.btn.light {
+  background: #ffffff;
+  color: var(--maroon);
+  border: 1px solid var(--maroon);
+}
+
+.section-title {
+  color: var(--heading);
+  margin-bottom: 20px;
+  font-size: 27px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px;
+  margin-top: 25px;
+}
+
+.card {
+  background: var(--surface);
+  padding: 23px;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px #0000000d;
+  border-top: 4px solid var(--maroon);
+}
+
+.card h3 {
+  color: var(--heading);
+  margin-bottom: 12px;
+}
+
+.card p {
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.card .btn { margin-top: 15px; }
+
+.form-box {
+  background: var(--surface);
+  padding: 28px;
+  border-radius: 10px;
+  max-width: 950px;
+  margin: auto;
+  box-shadow: 0 3px 12px #0000000d;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin: 15px 0 25px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.field label {
+  font-weight: bold;
+  font-size: 13px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  font-size: 14px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+input:focus, select:focus, textarea:focus { outline: 2px solid #a65a70; }
+
+textarea { resize: vertical; }
+
+.subheading {
+  color: var(--heading);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 9px;
+  margin: 25px 0 10px;
+}
+
+.notice {
+  background: var(--notice);
+  border-left: 4px solid var(--gold);
+  padding: 15px;
+  margin: 18px 0;
+  line-height: 1.5;
+}
+
+.result {
+  background: var(--ok-bg);
+  color: var(--ok-text);
+  border-radius: 7px;
+  padding: 17px;
+  margin-top: 15px;
+  display: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  margin-top: 15px;
+  min-width: 650px;
+}
+
+th, td {
+  padding: 13px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+}
+
+th {
+  background: var(--maroon);
+  color: white;
+}
+
+.table-wrap { overflow-x: auto; max-width: 100%; }
+
+.status {
+  padding: 5px 9px;
+  border-radius: 15px;
+  background: var(--pill-bg);
+  color: var(--pill-text);
+  font-size: 12px;
+}
+
+footer {
+  background: var(--dark);
+  color: white;
+  text-align: center;
+  padding: 25px;
+  line-height: 1.8;
+}
+
+footer small { color: #e8c5ce; }
+
+.hidden { display: none !important; }
+
+@media(max-width: 650px) {
+  header { justify-content: center; }
+  nav { justify-content: center; }
+  .hero { padding: 55px 7%; }
+  .page { padding: 25px 5%; }
+  .brand h2 { font-size: 14px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo">OMNHS</div>
+    <div>
+      <h2>OCCIDENTAL MINDORO NHS</h2>
+      <small>Official School Portal</small>
+    </div>
+  </div>
+
+  <nav>
+    <button class="active" onclick="showPage('home',this)">Home</button>
+    <button onclick="showPage('enrollment',this)">Enrollment</button>
+    <button onclick="showPage('student',this)">Students</button>
+    <button onclick="showPage('announcements',this)">Announcements</button>
+    <button onclick="showPage('about',this)">About</button>
+    <button onclick="showPage('admin',this)">Admin</button>
+  </nav>
+</header>
+
+<!-- HOME PAGE -->
+<section id="home" class="page active">
+
+  <div class="hero">
+    <h3 class="gold">WELCOME TO OUR SCHOOL COMMUNITY</h3>
+    <h1>Occidental Mindoro National High School Portal</h1>
+    <p>
+      Welcome students, parents, and teachers!
+      Access online enrollment, student information,
+      school announcements, and other important services
+      through our official school portal.
+    </p>
+
+    <br>
+
+    <button class="btn gold-btn" onclick="showPage('enrollment')">
+      Apply for Enrollment
+    </button>
+
+    <button class="btn light" onclick="showPage('student')">
+      Student Information
+    </button>
+  </div>
+
+  <br><br>
+
+  <h2 class="section-title">Quick Access</h2>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Online Enrollment</h3>
+      <p>Submit your student enrollment application online.</p>
+      <button class="btn" onclick="showPage('enrollment')">Enroll Now</button>
+    </div>
+
+    <div class="card">
+      <h3>Student Information</h3>
+      <p>View your student profile and enrollment details.</p>
+      <button class="btn" onclick="showPage('student')">View Profile</button>
+    </div>
+
+    <div class="card">
+      <h3>Announcements</h3>
+      <p>Read important school updates and reminders.</p>
+      <button class="btn" onclick="showPage('announcements')">Read More</button>
+    </div>
+
+    <div class="card">
+      <h3>About Our School</h3>
+      <p>Learn more about Occidental Mindoro National High School.</p>
+      <button class="btn" onclick="showPage('about')">Learn More</button>
+    </div>
+  </div>
+
+  <br><br>
+
+  <div class="notice">
+    <strong>Important Reminder:</strong>
+    Please make sure that all enrollment information
+    is correct before submitting your application.
+  </div>
+
+</section>
+
+<!-- ENROLLMENT PAGE -->
+<section id="enrollment" class="page">
+
+  <h2 class="section-title">Online Enrollment Application</h2>
+
+  <p>Complete the form below to submit your enrollment application.</p>
+
+  <br>
+
+  <div class="form-box">
+
+    <form id="enrollmentForm">
+
+      <h3 class="subheading">I. Student Information</h3>
+
+      <div class="form-grid">
+        <div class="field">
+          <label>Complete Name *</label>
+          <input name="name" required placeholder="Enter full name">
+        </div>
+
+        <div class="field">
+          <label>Date of Birth *</label>
+          <input type="date" name="birth" id="birth" required>
+        </div>
+
+        <div class="field">
+          <label>Age *</label>
+          <input type="number" name="age" id="age" min="1" max="100" required>
+        </div>
+
+        <div class="field">
+          <label>Gender *</label>
+          <select name="gender" required>
+            <option value="">Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Prefer not to say</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Address *</label>
+          <input name="address" required placeholder="Complete address">
+        </div>
+
+        <div class="field">
+          <label>Contact Number *</label>
+          <input type="tel" name="contact" required>
+        </div>
+
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" name="email">
+        </div>
+      </div>
+
+      <h3 class="subheading">II. Parent / Guardian Information</h3>
+
+      <div class="form-grid">
+        <div class="field">
+          <label>Parent / Guardian Name *</label>
+          <input name="guardian" required>
+        </div>
+
+        <div class="field">
+          <label>Guardian Contact Number *</label>
+          <input name="guardianContact" required>
+        </div>
+
+        <div class="field">
+          <label>Relationship to Student *</label>
+          <select name="relationship" required>
+            <option value="">Select Relationship</option>
+            <option>Mother</option>
+            <option>Father</option>
+            <option>Guardian</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <h3 class="subheading">III. Academic Information</h3>
+
+      <div class="form-grid">
+        <div class="field">
+          <label>School Year *</label>
+          <input name="schoolYear" placeholder="e.g. 2026-2027" required>
+        </div>
+
+        <div class="field">
+          <label>Grade Level *</label>
+          <select name="grade" id="grade" required>
+            <option value="">Select Grade Level</option>
+            <option>Grade 7</option>
+            <option>Grade 8</option>
+            <option>Grade 9</option>
+            <option>Grade 10</option>
+            <option>Grade 11</option>
+            <option>Grade 12</option>
+          </select>
+        </div>
+
+        <div class="field hidden" id="strandField">
+          <label>Senior High School Strand</label>
+          <select name="strand" id="strand">
+            <option value="">Select Strand</option>
+            <option>STEM</option>
+            <option>ABM</option>
+            <option>HUMSS</option>
+            <option>TVL</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Previous School *</label>
+          <input name="previousSchool" required>
+        </div>
+
+        <div class="field">
+          <label>Enrollment Type *</label>
+          <select name="enrollmentType" required>
+            <option value="">Select Type</option>
+            <option>New Student</option>
+            <option>Transferee</option>
+            <option>Returning Student</option>
+          </select>
+        </div>
+      </div>
+
+      <h3 class="subheading">IV. Enrollment Requirements</h3>
+
+      <div class="notice">
+        Upload the documents required by the school.
+        This demonstration stores enrollment details locally;
+        uploaded files are not transmitted or stored.
+      </div>
+
+      <div class="form-grid">
+        <div class="field">
+          <label>Birth Certificate</label>
+          <input type="file" accept=".pdf,.jpg,.jpeg,.png">
+        </div>
+
+        <div class="field">
+          <label>Report Card</label>
+          <input type="file" accept=".pdf,.jpg,.jpeg,.png">
+        </div>
+
+        <div class="field">
+          <label>Other Supporting Documents</label>
+          <input type="file" accept=".pdf,.jpg,.jpeg,.png" multiple>
+        </div>
+      </div>
+
+      <label>
+        <input type="checkbox" required style="width:auto">
+        I confirm that the information provided is correct.
+      </label>
+
+      <br><br>
+
+      <button class="btn" type="submit">Submit Enrollment Application</button>
+      <button class="btn light" type="reset">Clear Form</button>
+
+      <div class="result" id="enrollmentResult"></div>
+
+    </form>
+  </div>
+</section>
+
+<!-- STUDENT INFORMATION -->
+<section id="student" class="page">
+
+  <h2 class="section-title">Student Information</h2>
+
+  <p>Enter your enrollment reference number to view your submitted information.</p>
+
+  <br>
+
+  <div class="form-box">
+    <div class="field">
+      <label>Enrollment Reference Number</label>
+      <input id="studentSearch" placeholder="Example: OMNHS-123456">
+    </div>
+
+    <button class="btn" onclick="findStudent()">Search Student</button>
+
+    <div id="studentResult"></div>
+  </div>
+
+</section>
+
+<!-- ANNOUNCEMENTS -->
+<section id="announcements" class="page">
+
+  <h2 class="section-title">School Announcements</h2>
+
+  <p>Stay updated with important school information and reminders.</p>
+
+  <div id="announcementList" class="cards">
+    <div class="card">
+      <h3>Online Enrollment</h3>
+      <p>Students may use this portal to submit a demonstration enrollment application.</p>
+    </div>
+
+    <div class="card">
+      <h3>School Reminders</h3>
+      <p>Keep your school information and contact details updated.</p>
+    </div>
+
+    <div class="card">
+      <h3>Welcome Students!</h3>
+      <p>Welcome to Occidental Mindoro National High School Portal.</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="page">
+
+  <h2 class="section-title">About Our School</h2>
+
+  <div class="card">
+    <h3>Occidental Mindoro National High School</h3>
+
+    <p>
+      Welcome to Occidental Mindoro National High School.
+      This portal is designed to provide students, parents,
+      and school personnel with convenient access to
+      school-related information and online enrollment services.
+    </p>
+
+    <br>
+
+    <h3>Our School Portal</h3>
+
+    <p>
+      The portal provides access to enrollment applications,
+      student information, school announcements, and
+      administrative services.
+    </p>
+
+    <br>
+
+    <h3>Contact Information</h3>
+
+    <p>
+      School: Occidental Mindoro National High School
+      <br>
+      Location: Occidental Mindoro, Philippines
+      <br>
+      Contact: Please contact the school office for official inquiries.
+    </p>
+  </div>
+
+</section>
+
+<!-- ADMIN DASHBOARD -->
+<section id="admin" class="page">
+
+  <h2 class="section-title">Administrator Dashboard</h2>
+
+  <div class="notice">
+    Demonstration administrator area. This version does not
+    have secure administrator authentication.
+  </div>
+
+  <div class="form-box">
+
+    <h3 class="subheading">Enrollment Overview</h3>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Total Applications</h3>
+        <h2 id="totalApplications">0</h2>
+      </div>
+
+      <div class="card">
+        <h3>Pending Applications</h3>
+        <h2 id="pendingApplications">0</h2>
+      </div>
+
+      <div class="card">
+        <h3>Approved Applications</h3>
+        <h2 id="approvedApplications">0</h2>
+      </div>
+    </div>
+
+    <h3 class="subheading">Enrollment Records</h3>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Reference No.</th>
+            <th>Student Name</th>
+            <th>Grade</th>
+            <th>School Year</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="adminRecords"></tbody>
+      </table>
+    </div>
+
+    <br>
+
+    <h3 class="subheading">Manage Announcements</h3>
+
+    <div class="field">
+      <label>Announcement Title</label>
+      <input id="announcementTitle" placeholder="Enter announcement title">
+    </div>
+
+    <br>
+
+    <div class="field">
+      <label>Announcement Details</label>
+      <textarea id="announcementText" rows="3"></textarea>
+    </div>
+
+    <button class="btn" onclick="addAnnouncement()">Publish Announcement</button>
+    <button class="btn light" onclick="exportRecords()">Export Enrollment Records (CSV)</button>
+
+  </div>
+
+</section>
+
+<footer>
+  <strong>OCCIDENTAL MINDORO NATIONAL HIGH SCHOOL</strong>
+  <br>
+  Occidental Mindoro National High School Portal
+  <br>
+  <small>Online Enrollment and Student Information System</small>
+  <br>
+  <small>© 2026 School Portal Prototype</small>
+</footer>
+
+<script>
+
+// PAGE NAVIGATION
+function showPage(page, button) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(page).classList.add('active');
+
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+
+  if (button) {
+    button.classList.add('active');
+  } else {
+    document.querySelectorAll('nav button').forEach(b => {
+      if (b.getAttribute('onclick').includes("'" + page + "'")) b.classList.add('active');
+    });
+  }
+
+  window.scrollTo(0, 0);
+  if (page === 'admin') updateAdmin();
+}
+
+// STORAGE (guarded: browser storage can be unavailable)
+let memoryRecords = [];
+
+function getRecords() {
+  try {
+    return JSON.parse(localStorage.getItem('omnhsRecords')) || [];
+  } catch {
+    return memoryRecords;
+  }
+}
+
+function saveRecords(records) {
+  memoryRecords = records;
+  try {
+    localStorage.setItem('omnhsRecords', JSON.stringify(records));
+  } catch {}
+}
+
+// GRADE AND STRAND
+document.getElementById('grade').addEventListener('change', function() {
+  const strand = document.getElementById('strandField');
+  const strandInput = document.getElementById('strand');
+  const senior = ['Grade 11', 'Grade 12'].includes(this.value);
+
+  strand.classList.toggle('hidden', !senior);
+  strandInput.required = senior;
+});
+
+// AUTOMATIC AGE
+document.getElementById('birth').addEventListener('change', function() {
+  const birth = new Date(this.value);
+  const today = new Date();
+
+  let age = today.getFullYear() - birth.getFullYear();
+
+  const beforeBirthday =
+    today.getMonth() < birth.getMonth() ||
+    (today.getMonth() === birth.getMonth() &&
+     today.getDate() < birth.getDate());
+
+  if (beforeBirthday) age--;
+
+  if (this.value && age >= 0 && age <= 100) {
+    document.getElementById('age').value = age;
+  }
+});
+
+// SUBMIT ENROLLMENT
+document.getElementById('enrollmentForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const form = new FormData(this);
+  const records = getRecords();
+
+  const reference = 'OMNHS-' + Math.floor(100000 + Math.random() * 900000);
+
+  const record = {
+    reference,
+    name: form.get('name'),
+    birth: form.get('birth'),
+    age: form.get('age'),
+    gender: form.get('gender'),
+    address: form.get('address'),
+    contact: form.get('contact'),
+    email: form.get('email'),
+    guardian: form.get('guardian'),
+    guardianContact: form.get('guardianContact'),
+    relationship: form.get('relationship'),
+    schoolYear: form.get('schoolYear'),
+    grade: form.get('grade'),
+    strand: form.get('strand'),
+    previousSchool: form.get('previousSchool'),
+    enrollmentType: form.get('enrollmentType'),
+    status: 'Pending'
+  };
+
+  records.push(record);
+  saveRecords(records);
+
+  const result = document.getElementById('enrollmentResult');
+
+  result.style.display = 'block';
+  result.innerHTML = `
+    <h3>Application Submitted!</h3>
+    <p>Your demonstration enrollment application has been saved.</p>
+    <br>
+    <strong>Reference Number: ${reference}</strong>
+    <p>Please save your reference number to check your application status.</p>
+  `;
+
+  this.reset();
+  document.getElementById('strandField').classList.add('hidden');
+
+  updateAdmin();
+});
+
+// SEARCH STUDENT
+function findStudent() {
+  const ref = document.getElementById('studentSearch').value.trim().toUpperCase();
+  const student = getRecords().find(r => r.reference.toUpperCase() === ref);
+  const result = document.getElementById('studentResult');
+
+  if (!student) {
+    result.innerHTML = `<div class="notice">No application found. Please check your reference number.</div>`;
+    return;
+  }
+
+  result.innerHTML = `
+    <div class="card" style="margin-top:20px">
+      <h3>Student Profile</h3>
+      <p><strong>Reference:</strong> ${escapeHTML(student.reference)}</p>
+      <p><strong>Name:</strong> ${escapeHTML(student.name)}</p>
+      <p><strong>Grade:</strong> ${escapeHTML(student.grade)}</p>
+      <p><strong>School Year:</strong> ${escapeHTML(student.schoolYear)}</p>
+      <p><strong>Contact:</strong> ${escapeHTML(student.contact)}</p>
+      <p><strong>Email:</strong> ${escapeHTML(student.email || 'Not provided')}</p>
+      <br>
+      <p><strong>Enrollment Status:</strong>
+      <span class="status">${escapeHTML(student.status)}</span></p>
+    </div>
+  `;
+}
+
+// ADMIN DASHBOARD
+function updateAdmin() {
+  const records = getRecords();
+
+  document.getElementById('totalApplications').textContent = records.length;
+  document.getElementById('pendingApplications').textContent =
+    records.filter(r => r.status === 'Pending').length;
+  document.getElementById('approvedApplications').textContent =
+    records.filter(r => r.status === 'Approved').length;
+
+  const table = document.getElementById('adminRecords');
+  table.innerHTML = '';
+
+  if (!records.length) {
+    table.innerHTML = `<tr><td colspan="6">No enrollment applications yet.</td></tr>`;
+    return;
+  }
+
+  records.forEach((student, index) => {
+    const tr = document.createElement('tr');
+
+    [student.reference, student.name, student.grade, student.schoolYear, student.status]
+      .forEach(value => {
+        const td = document.createElement('td');
+        td.textContent = value || '';
+        tr.appendChild(td);
+      });
+
+    const action = document.createElement('td');
+
+    if (student.status === 'Pending') {
+      const approve = document.createElement('button');
+      approve.textContent = 'Approve';
+      approve.className = 'btn';
+      approve.onclick = () => changeStatus(index, 'Approved');
+
+      const reject = document.createElement('button');
+      reject.textContent = 'Reject';
+      reject.className = 'btn light';
+      reject.onclick = () => changeStatus(index, 'Rejected');
+
+      action.append(approve, reject);
+    } else {
+      const remove = document.createElement('button');
+      remove.textContent = 'Delete';
+      remove.className = 'btn light';
+      remove.onclick = () => deleteRecord(index);
+      action.appendChild(remove);
+    }
+
+    tr.appendChild(action);
+    table.appendChild(tr);
+  });
+}
+
+// CHANGE STATUS
+function changeStatus(index, status) {
+  const records = getRecords();
+  if (!records[index]) return;
+  records[index].status = status;
+  saveRecords(records);
+  updateAdmin();
+}
+
+// DELETE RECORD
+function deleteRecord(index) {
+  if (!confirm('Delete this demonstration record?')) return;
+  const records = getRecords();
+  records.splice(index, 1);
+  saveRecords(records);
+  updateAdmin();
+}
+
+// ADD ANNOUNCEMENT
+function addAnnouncement() {
+  const title = document.getElementById('announcementTitle').value.trim();
+  const details = document.getElementById('announcementText').value.trim();
+
+  if (!title || !details) {
+    alert('Please complete the announcement fields.');
+    return;
+  }
+
+  const card = document.createElement('div');
+  card.className = 'card';
+
+  const heading = document.createElement('h3');
+  heading.textContent = title;
+
+  const paragraph = document.createElement('p');
+  paragraph.textContent = details;
+
+  card.append(heading, paragraph);
+  document.getElementById('announcementList').prepend(card);
+
+  document.getElementById('announcementTitle').value = '';
+  document.getElementById('announcementText').value = '';
+
+  alert('Announcement added to this page.');
+}
+
+// EXPORT CSV
+function exportRecords() {
+  const records = getRecords();
+
+  if (!records.length) {
+    alert('There are no records to export.');
+    return;
+  }
+
+  const columns = [
+    'reference', 'name', 'birth', 'age', 'gender',
+    'address', 'contact', 'email', 'guardian',
+    'guardianContact', 'relationship', 'schoolYear',
+    'grade', 'strand', 'previousSchool',
+    'enrollmentType', 'status'
+  ];
+
+  const csv = [
+    columns.join(','),
+    ...records.map(record =>
+      columns.map(key =>
+        '"' + String(record[key] || '').replace(/"/g, '""') + '"'
+      ).join(',')
+    )
+  ].join('\n');
+
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+
+  link.href = url;
+  link.download = 'OMNHS-Enrollment-Records.csv';
+  link.click();
+
+  URL.revokeObjectURL(url);
+}
+
+// SAFE TEXT DISPLAY
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[char]);
+}
+
+updateAdmin();
+
+</script>
+
+</body>
+</html>
