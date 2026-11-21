@@ -1048,5 +1048,27 @@ updateAdmin();
 
 </script>
 
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+  import { getAuth } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyC7uxoeCVQMhma2nIM54Fn-yHonHibH5DU",
+    authDomain: "omnhs-portal.firebaseapp.com",
+    projectId: "omnhs-portal",
+    storageBucket: "omnhs-portal.firebasestorage.app",
+    messagingSenderId: "495698894244",
+    appId: "1:495698894244:web:8a293b8bbbf175ec7cb531",
+    measurementId: "G-68K4L5BN4Y"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  console.log("OMNHS Portal Firebase connected!");
+</script>
+
 </body>
 </html>
