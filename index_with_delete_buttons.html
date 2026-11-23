@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#710d25">
+  <title>Occidental Mindoro National High School Portal</title>
+  <style>
+    :root{--maroon:#710d25;--dark:#4c0718;--gold:#d5ad62;--cream:#fffaf4;--ink:#28232a;--muted:#716a70;--line:#eadfe2;--white:#fff;--green:#237a4b;--red:#b42335}
+    *{box-sizing:border-box}body{margin:0;background:#f6f2f3;color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.5}
+    button,input,select,textarea{font:inherit}button{cursor:pointer}.topbar{background:var(--dark);color:#fff;padding:10px 5%;font-size:13px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    header{background:var(--maroon);color:#fff;padding:20px 5%;display:flex;align-items:center;gap:16px}.seal{width:62px;height:62px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;font-weight:bold;color:var(--gold);text-align:center;font-size:12px;flex-shrink:0}
+    header h1{font-size:clamp(19px,3vw,28px);margin:0}header p{margin:4px 0 0;color:#f4dfe4;font-size:13px}
+    nav{background:#fff;display:flex;gap:4px;padding:0 5%;overflow-x:auto;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+    nav button{border:0;background:transparent;padding:15px 13px;color:#4c0718;white-space:nowrap;font-weight:700;border-bottom:3px solid transparent}
+    nav button.active,nav button:hover{border-bottom-color:var(--gold);color:var(--maroon)}
+    main{max-width:1100px;margin:28px auto;padding:0 18px 50px}.page{display:none}.page.active{display:block}
+    .hero{background:linear-gradient(120deg,#4c0718,#8b1835);color:#fff;border-radius:18px;padding:clamp(26px,5vw,54px);position:relative;overflow:hidden}
+    .hero:after{content:"";position:absolute;width:230px;height:230px;border:28px solid #ffffff12;border-radius:50%;right:-50px;top:-70px}
+    .hero h2{font-size:clamp(27px,5vw,42px);line-height:1.15;max-width:650px;margin:0 0 14px}.hero p{max-width:650px;color:#f4e7ea}
+    .btn{border:0;border-radius:8px;padding:11px 17px;background:var(--maroon);color:#fff;font-weight:700;display:inline-block;text-decoration:none}
+    .btn.gold{background:var(--gold);color:#32131b}.btn.light{background:#fff;color:var(--maroon)}.btn.outline{background:transparent;border:1px solid var(--maroon);color:var(--maroon)}.btn.small{padding:7px 10px;font-size:13px}.btn:disabled{opacity:.55;cursor:not-allowed}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.section-title{color:var(--maroon);margin:28px 0 12px;font-size:23px}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}.card,.panel{background:#fff;border:1px solid var(--line);border-radius:13px;padding:19px;box-shadow:0 4px 15px #3c102008}
+    .card h3{margin:0 0 8px;color:var(--maroon)}.card p{margin:0;color:var(--muted);font-size:14px}
+    .panel{margin-top:18px}.panel h2,.panel h3{color:var(--maroon);margin-top:0}
+    .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}
+    label{font-size:13px;font-weight:700;color:#51464b}input,select,textarea{width:100%;padding:11px;border:1px solid #d8cbd0;border-radius:7px;background:#fff;color:var(--ink)}textarea{min-height:90px;resize:vertical}
+    .hint{font-size:12px;color:var(--muted)}.notice{padding:12px 14px;border-radius:8px;background:#fff6df;border:1px solid #f0dba5;color:#674b13;font-size:13px;margin:14px 0}
+    .success{background:#eaf7ef;border-color:#b9e1c7;color:#155b34}.error{background:#fff0f0;border-color:#efc2c2;color:#8c1b27}
+    .hidden{display:none!important}.status{display:inline-block;border-radius:20px;padding:4px 9px;font-size:12px;font-weight:700;background:#eee;color:#51464b}.status.Pending{background:#fff1cb;color:#765300}.status.Approved,.status.Enrolled,.status.Completed{background:#e3f5e9;color:#17643a}.status.Rejected{background:#fde7e7;color:#9c1c28}
+    .table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:13px}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--maroon);background:#fff8f9}
+    .item{padding:13px 0;border-bottom:1px solid var(--line)}.item:last-child{border:0}.item h4{margin:0 0 4px;color:var(--maroon)}.item p{margin:3px 0;color:var(--muted);font-size:13px}
+    footer{text-align:center;background:var(--dark);color:#f4e7ea;padding:22px 15px;font-size:12px}
+    .userline{font-size:13px;color:var(--muted);margin-bottom:12px}
+    @media(max-width:650px){header{padding:16px 5%}.seal{width:50px;height:50px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}nav button{padding:13px 10px;font-size:13px}}
+  </style>
+</head>
+<body>
+  <div class="topbar"><span>Republic of the Philippines · Department of Education</span><span>School Portal Demonstration</span></div>
+  <header>
+    <div class="seal">OMNHS<br>EST.</div>
+    <div><h1>Occidental Mindoro National High School</h1><p>Student Portal · Learn, Grow, Succeed</p></div>
+  </header>
+  <nav id="mainNav">
+    <button class="active" data-page="home">Home</button>
+    <button data-page="enrollment">Online Enrollment</button>
+    <button data-page="student">Student Portal</button>
+    <button data-page="announcements">Announcements</button>
+    <button data-page="grades">Grades</button>
+    <button data-page="about">About</button>
+    <button data-page="account">Account</button>
+    <button data-page="admin" id="adminNav" class="hidden">Admin</button>
+  </nav>
+
+  <main>
+    <section id="home" class="page active">
+      <div class="hero">
+        <h2>Welcome to the OMNHS Student Portal</h2>
+        <p>A convenient demonstration portal for student account access, online enrollment applications, school document requests, announcements, and sample grades.</p>
+        <div class="actions"><button class="btn gold" data-go="enrollment">Apply for Enrollment</button><button class="btn light" data-go="account">Sign In / Register</button></div>
+      </div>
+      <h2 class="section-title">Portal Services</h2>
+      <div class="cards">
+        <div class="card"><h3>Online Enrollment</h3><p>Submit a sample enrollment application and check its status.</p></div>
+        <div class="card"><h3>Student Portal</h3><p>View your submitted applications and document requests.</p></div>
+        <div class="card"><h3>Document Requests</h3><p>Send a demonstration request for school documents.</p></div>
+        <div class="card"><h3>Announcements</h3><p>Read updates published in this demonstration portal.</p></div><div class="card"><h3>Grades</h3><p>View sample grades by quarter after signing in.</p></div>
+      </div>
+      <div class="notice">Demo only: Use fictional names and information. This website is not an official school enrollment system and must not be used to collect actual student records.</div>
+    </section>
+
+    <section id="enrollment" class="page">
+      <h2 class="section-title">Online Enrollment Application</h2>
+      <div id="enrollMessage" class="notice hidden"></div>
+      <div class="panel">
+        <p class="hint">Sign in first. All fields marked * are required. Do not upload or enter real personal information.</p>
+        <form id="enrollForm">
+          <div class="form-grid">
+            <div class="field"><label for="eName">Student full name *</label><input id="eName" required maxlength="100" placeholder="Juan Dela Cruz"></div>
+            <div class="field"><label for="eBirth">Date of birth *</label><input id="eBirth" type="date" required></div>
+            <div class="field"><label for="eGrade">Grade level applying for *</label><select id="eGrade" required><option value="">Select grade</option><option>Grade 7</option><option>Grade 8</option><option>Grade 9</option><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option></select></div>
+            <div class="field"><label for="eStrand">Strand (if applicable)</label><select id="eStrand"><option value="">Not applicable</option><option>STEM</option><option>ABM</option><option>HUMSS</option><option>GAS</option><option>TVL</option></select></div>
+            <div class="field"><label for="eSchoolYear">School year *</label><input id="eSchoolYear" value="2026-2027" required></div>
+            <div class="field"><label for="ePrevious">Previous school *</label><input id="ePrevious" required maxlength="120"></div>
+            <div class="field"><label for="eGuardian">Parent / guardian name *</label><input id="eGuardian" required maxlength="100"></div>
+            <div class="field"><label for="eContact">Demo contact number</label><input id="eContact" maxlength="30" placeholder="09XX-XXX-XXXX"></div>
+            <div class="field full"><label for="eNotes">Additional notes (optional)</label><textarea id="eNotes" maxlength="500"></textarea></div>
+          </div>
+          <div class="actions"><button class="btn" type="submit" id="enrollSubmit">Submit Application</button></div>
+        </form>
+      </div>
+    </section>
+
+    <section id="student" class="page">
+      <h2 class="section-title">Student Portal</h2>
+      <div id="studentSignedOut" class="notice">Please sign in to view your applications and requests.</div>
+      <div id="studentContent" class="hidden">
+        <p class="userline" id="studentEmail"></p>
+        <div class="panel"><h3>My Enrollment Applications</h3><div id="myEnrollments">Loading…</div></div>
+        <div class="panel"><h3>Request a School Document</h3>
+          <div id="requestMessage" class="notice hidden"></div>
+          <form id="requestForm"><div class="form-grid">
+            <div class="field"><label for="docType">Document *</label><select id="docType" required><option value="">Select document</option><option>Certificate of Enrollment</option><option>Form 137</option><option>Form 138</option><option>Good Moral Certificate</option><option>Certificate of Graduation</option><option>Other</option></select></div>
+            <div class="field"><label for="docPurpose">Purpose *</label><input id="docPurpose" required maxlength="200" placeholder="For school requirement"></div>
+            <div class="field full"><label for="docNotes">Additional details (optional)</label><textarea id="docNotes" maxlength="500"></textarea></div>
+          </div><div class="actions"><button class="btn" type="submit" id="requestSubmit">Send Request</button></div></form>
+        </div>
+        <div class="panel"><h3>My Document Requests</h3><div id="myRequests">Loading…</div></div>
+      </div>
+    </section>
+
+    <section id="announcements" class="page">
+      <h2 class="section-title">School Announcements</h2><div class="panel"><div id="announcementList">Loading announcements…</div></div>
+    </section>
+
+
+    <section id="grades" class="page">
+      <h2 class="section-title">My Grades</h2>
+      <div id="gradesSignedOut" class="notice">Please sign in to view your grades.</div>
+      <div id="gradesContent" class="hidden">
+        <p class="userline" id="gradesEmail"></p>
+        <div class="notice">Demonstration feature: grades shown here are sample data only. Do not use real student records.</div>
+        <div class="panel"><div class="table-wrap"><table><thead><tr><th>School Year</th><th>Quarter</th><th>Grade Level</th><th>Subject</th><th>Grade</th><th>Remarks</th></tr></thead><tbody id="myGrades"><tr><td colspan="6">Loading grades…</td></tr></tbody></table></div></div>
+      </div>
+    </section>
+
+    <section id="about" class="page">
+      <h2 class="section-title">About the Portal</h2>
+      <div class="panel"><h3>Occidental Mindoro National High School Portal</h3><p>This is a student-created website demonstration intended to show how a school portal might organize online enrollment, student access, document requests, and announcements.</p><p>It is not an official website or service of Occidental Mindoro National High School or the Department of Education.</p><div class="notice">Privacy reminder: Do not submit actual student names, addresses, birth dates, contact details, school documents, or other personal information. Use sample data only.</div></div>
+    </section>
+
+    <section id="account" class="page">
+      <h2 class="section-title">Student Account</h2>
+      <div id="accountStatus" class="notice">You are currently signed out.</div>
+      <div id="authForms" class="cards">
+        <div class="panel"><h3>Sign In</h3><form id="loginForm">
+          <div class="field"><label for="loginEmail">Email address</label><input id="loginEmail" type="email" required autocomplete="email"></div>
+          <div class="field"><label for="loginPassword">Password</label><input id="loginPassword" type="password" required autocomplete="current-password"></div>
+          <div class="actions"><button class="btn" type="submit" id="loginSubmit">Sign In</button></div>
+        </form></div>
+        <div class="panel"><h3>Create Student Account</h3><form id="registerForm">
+          <div class="field"><label for="regName">Full name (fictional for demo)</label><input id="regName" required maxlength="100" autocomplete="name"></div>
+          <div class="field"><label for="regEmail">Email address</label><input id="regEmail" type="email" required autocomplete="email"></div>
+          <div class="field"><label for="regPassword">Password (at least 6 characters)</label><input id="regPassword" type="password" minlength="6" required autocomplete="new-password"></div>
+          <div class="actions"><button class="btn" type="submit" id="registerSubmit">Create Account</button></div>
+        </form><p class="hint">New accounts receive student access only. They cannot make themselves administrators.</p></div>
+      </div>
+      <div id="signedInActions" class="hidden panel"><h3>Account Actions</h3><p id="signedInEmail"></p><button class="btn outline" id="logoutBtn" type="button">Sign Out</button></div>
+      <div id="authMessage" class="notice hidden"></div>
+    </section>
+
+    <section id="admin" class="page">
+      <h2 class="section-title">Administrator Dashboard</h2>
+      <div id="adminDenied" class="notice">Administrator access is restricted. Sign in with an account that has been authorized by the project owner.</div>
+      <div id="adminContent" class="hidden">
+        <div class="cards">
+          <div class="card"><h3>Enrollment Applications</h3><p id="adminEnrollmentCount">0</p></div>
+          <div class="card"><h3>Document Requests</h3><p id="adminRequestCount">0</p></div>
+        </div>
+        <div class="panel"><h3>Enrollment Applications</h3><div class="table-wrap"><table><thead><tr><th>Student</th><th>Grade</th><th>School Year</th><th>Status</th><th>Action</th></tr></thead><tbody id="adminEnrollments"></tbody></table></div></div>
+        <div class="panel"><h3>Document Requests</h3><div class="table-wrap"><table><thead><tr><th>Student</th><th>Document</th><th>Purpose</th><th>Status</th><th>Action</th></tr></thead><tbody id="adminRequests"></tbody></table></div></div>
+        <div class="panel"><h3>Announcements</h3><div id="adminAnnouncements">Loading…</div></div>
+
+        <div class="panel"><h3>Enter / Update Student Grades</h3>
+          <p class="hint">Use fictional demo student accounts. Enter the student's Firebase Authentication UID so the record is linked to the correct account.</p>
+          <form id="gradeForm"><div class="form-grid">
+            <div class="field"><label for="gUid">Student UID *</label><input id="gUid" required maxlength="128" placeholder="Firebase Auth UID"></div>
+            <div class="field"><label for="gStudentName">Student name (demo) *</label><input id="gStudentName" required maxlength="100"></div>
+            <div class="field"><label for="gLevel">Grade level *</label><select id="gLevel" required><option value="">Select grade</option><option>Grade 7</option><option>Grade 8</option><option>Grade 9</option><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option></select></div>
+            <div class="field"><label for="gSubject">Subject *</label><input id="gSubject" required maxlength="100" placeholder="Mathematics"></div>
+            <div class="field"><label for="gSchoolYear">School year *</label><input id="gSchoolYear" value="2026-2027" required maxlength="20"></div>
+            <div class="field"><label for="gQuarter">Quarter *</label><select id="gQuarter" required><option value="">Select quarter</option><option>1st Quarter</option><option>2nd Quarter</option><option>3rd Quarter</option><option>4th Quarter</option></select></div>
+            <div class="field"><label for="gGrade">Grade (0–100) *</label><input id="gGrade" type="number" min="0" max="100" step="1" required></div>
+            <div class="field"><label for="gRemarks">Remarks</label><input id="gRemarks" maxlength="120" placeholder="Passed / Needs improvement"></div>
+          </div><div class="actions"><button class="btn" type="submit" id="gradeSubmit">Save Grade</button></div></form>
+          <div id="gradeMessage" class="notice hidden"></div>
+        </div>
+        <div class="panel"><h3>Grade Records</h3><div class="table-wrap"><table><thead><tr><th>Student</th><th>Grade Level</th><th>School Year</th><th>Quarter</th><th>Subject</th><th>Grade</th><th>Remarks</th></tr></thead><tbody id="adminGrades"><tr><td colspan="7">Loading…</td></tr></tbody></table></div></div>
+
+        <div class="panel"><h3>Post an Announcement</h3><form id="announcementForm"><div class="field"><label for="aTitle">Title *</label><input id="aTitle" required maxlength="120"></div><div class="field"><label for="aBody">Announcement *</label><textarea id="aBody" required maxlength="2000"></textarea></div><div class="actions"><button class="btn" type="submit">Publish Announcement</button></div></form><div id="adminMessage" class="notice hidden"></div></div>
+      </div>
+    </section>
+  </main>
+  <footer>© 2026 OMNHS Portal Demonstration · For educational use only · Not an official school system</footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc, addDoc, collection, query, where, getDocs, orderBy, serverTimestamp, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC7uxoeCVQMhma2nIM54Fn-yHonHibH5DU",
+      authDomain: "omnhs-portal.firebaseapp.com",
+      projectId: "omnhs-portal",
+      storageBucket: "omnhs-portal.firebasestorage.app",
+      messagingSenderId: "495698894244",
+      appId: "1:495698894244:web:8a293b8bbbf175ec7cb531",
+      measurementId: "G-68K4L5BN4Y"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    let currentUser = null;
+    let isAdmin = false;
+
+    const $ = id => document.getElementById(id);
+    const show = (id, yes=true) => $(id).classList.toggle("hidden", !yes);
+    const message = (id, text, kind="") => {
+      const el=$(id); el.textContent=text; el.className="notice"+(kind?" "+kind:"");
+    };
+    const safe = value => String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    const dateText = value => value?.toDate ? value.toDate().toLocaleString() : "—";
+    const setBusy = (id,busy,label) => { const b=$(id); b.disabled=busy; if(busy){b.dataset.old=b.textContent;b.textContent=label;}else if(b.dataset.old){b.textContent=b.dataset.old;delete b.dataset.old;} };
+    const friendlyError = err => {
+      const code=err?.code||"";
+      const map={
+        "auth/email-already-in-use":"That email already has an account.",
+        "auth/invalid-email":"Please enter a valid email address.",
+        "auth/weak-password":"Choose a stronger password with at least 6 characters.",
+        "auth/invalid-credential":"Email or password is incorrect.",
+        "auth/user-not-found":"No account was found for that email.",
+        "auth/wrong-password":"Email or password is incorrect.",
+        "permission-denied":"Database access was blocked. Check the Firestore security rules.",
+        "failed-precondition":"A database index may be needed. Check the Firebase error details."
+      };
+      return map[code] || err?.message || "Something went wrong. Please try again.";
+    };
+
+    function go(page){
+      document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===page));
+      document.querySelectorAll("nav button[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
+      if(page==="student" && currentUser) loadStudentData();
+      if(page==="announcements") loadAnnouncements();
+      if(page==="grades" && currentUser) loadStudentGrades();
+      if(page==="admin" && isAdmin) loadAdminData();
+      window.scrollTo({top:0,behavior:"smooth"});
+    }
+    document.querySelectorAll("nav button[data-page]").forEach(b=>b.addEventListener("click",()=>go(b.dataset.page)));
+    document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>go(b.dataset.go)));
+
+    async function checkAdmin(user){
+      if(!user) return false;
+      try {
+        const adminRef = doc(db, "Admin", user.uid);
+        const adminSnap = await getDoc(adminRef);
+        return adminSnap.exists() && adminSnap.data().role === "admin";
+      } catch(e){
+        console.error("Admin check error:", e);
+        return false;
+      }
+    }
+
+    onAuthStateChanged(auth, async user=>{
+      currentUser=user;
+      isAdmin=await checkAdmin(user);
+      show("adminNav",isAdmin);
+      show("authForms",!user);
+      show("signedInActions",!!user);
+      show("studentSignedOut",!user);
+      show("studentContent",!!user);
+      show("gradesSignedOut",!user);
+      show("gradesContent",!!user);
+      if(user){
+        $("accountStatus").textContent="You are signed in.";
+        $("signedInEmail").textContent=user.email||"";
+        $("studentEmail").textContent="Signed in as "+(user.email||"");
+        $("gradesEmail").textContent="Signed in as "+(user.email||"");
+      }else{
+        $("accountStatus").textContent="You are currently signed out.";
+        $("signedInEmail").textContent="";
+      }
+      if(document.getElementById("admin").classList.contains("active")){
+        show("adminContent",isAdmin); show("adminDenied",!isAdmin);
+        if(isAdmin) loadAdminData();
+      }
+      if(document.getElementById("student").classList.contains("active") && user) loadStudentData();
+      if(document.getElementById("grades").classList.contains("active") && user) loadStudentGrades();
+    });
+
+    $("registerForm").addEventListener("submit",async e=>{
+      e.preventDefault(); setBusy("registerSubmit",true,"Creating…");
+      try{
+        const name=$("regName").value.trim(), email=$("regEmail").value.trim(), password=$("regPassword").value;
+        const cred=await createUserWithEmailAndPassword(auth,email,password);
+        await setDoc(doc(db,"users",cred.user.uid),{uid:cred.user.uid,displayName:name,email:email,role:"student",createdAt:serverTimestamp()});
+        message("authMessage","Student account created. You are now signed in.","success");
+        $("registerForm").reset();
+      }catch(err){message("authMessage",friendlyError(err),"error");}
+      finally{setBusy("registerSubmit",false);}
+    });
+    $("loginForm").addEventListener("submit",async e=>{
+      e.preventDefault();setBusy("loginSubmit",true,"Signing in…");
+      try{await signInWithEmailAndPassword(auth,$("loginEmail").value.trim(),$("loginPassword").value);message("authMessage","You are signed in.","success");$("loginForm").reset();}
+      catch(err){message("authMessage",friendlyError(err),"error");}
+      finally{setBusy("loginSubmit",false);}
+    });
+    $("logoutBtn").addEventListener("click",async()=>{try{await signOut(auth);go("home");}catch(err){message("authMessage",friendlyError(err),"error");}});
+
+    $("enrollForm").addEventListener("submit",async e=>{
+      e.preventDefault();
+      if(!currentUser){message("enrollMessage","Please create an account or sign in before submitting.","error");return;}
+      setBusy("enrollSubmit",true,"Submitting…");
+      try{
+        const data={
+          ownerUid:currentUser.uid, studentName:$("eName").value.trim(), birthDate:$("eBirth").value,
+          gradeLevel:$("eGrade").value, strand:$("eStrand").value, schoolYear:$("eSchoolYear").value.trim(),
+          previousSchool:$("ePrevious").value.trim(), guardianName:$("eGuardian").value.trim(),
+          contactNumber:$("eContact").value.trim(), notes:$("eNotes").value.trim(),
+          status:"Pending",createdAt:serverTimestamp()
+        };
+        await addDoc(collection(db,"enrollments"),data);
+        $("enrollForm").reset();$("eSchoolYear").value="2026-2027";
+        message("enrollMessage","Your demo enrollment application was submitted successfully.","success");
+      }catch(err){message("enrollMessage",friendlyError(err),"error");}
+      finally{setBusy("enrollSubmit",false);}
+    });
+
+    $("requestForm").addEventListener("submit",async e=>{
+      e.preventDefault();if(!currentUser){message("requestMessage","Please sign in first.","error");return;}
+      setBusy("requestSubmit",true,"Sending…");
+      try{
+        await addDoc(collection(db,"documentRequests"),{
+          ownerUid:currentUser.uid,studentEmail:currentUser.email||"",documentType:$("docType").value,
+          purpose:$("docPurpose").value.trim(),notes:$("docNotes").value.trim(),
+          status:"Pending",createdAt:serverTimestamp()
+        });
+        $("requestForm").reset();message("requestMessage","Your demo document request was sent.","success");loadStudentData();
+      }catch(err){message("requestMessage",friendlyError(err),"error");}
+      finally{setBusy("requestSubmit",false);}
+    });
+
+    async function loadStudentData(){
+      if(!currentUser)return;
+      try{
+        const q1=query(collection(db,"enrollments"),where("ownerUid","==",currentUser.uid));
+        const enroll=await getDocs(q1);
+        $("myEnrollments").innerHTML=enroll.empty?"<p>No enrollment applications yet.</p>":
+          enroll.docs.map(d=>{const x=d.data();return `<div class="item"><h4>${safe(x.studentName)}</h4><p>${safe(x.gradeLevel)} · ${safe(x.schoolYear)}</p><p>Status: <span class="status ${safe(x.status)}">${safe(x.status)}</span></p><p>Submitted: ${safe(dateText(x.createdAt))}</p></div>`}).join("");
+        const q2=query(collection(db,"documentRequests"),where("ownerUid","==",currentUser.uid));
+        const req=await getDocs(q2);
+        $("myRequests").innerHTML=req.empty?"<p>No document requests yet.</p>":
+          req.docs.map(d=>{const x=d.data();return `<div class="item"><h4>${safe(x.documentType)}</h4><p>Purpose: ${safe(x.purpose)}</p><p>Status: <span class="status ${safe(x.status)}">${safe(x.status)}</span></p><p>Submitted: ${safe(dateText(x.createdAt))}</p></div>`}).join("");
+      }catch(err){$("myEnrollments").textContent=friendlyError(err);$("myRequests").textContent=friendlyError(err);}
+    }
+
+
+    async function loadStudentGrades(){
+      if(!currentUser)return;
+      $("myGrades").innerHTML='<tr><td colspan="6">Loading grades…</td></tr>';
+      try{
+        const snap=await getDocs(query(collection(db,"grades"),where("studentUid","==",currentUser.uid)));
+        if(snap.empty){$("myGrades").innerHTML='<tr><td colspan="6">No grades posted yet.</td></tr>';return;}
+        const records=snap.docs.map(d=>d.data()).sort((a,b)=>String(a.schoolYear).localeCompare(String(b.schoolYear))||String(a.quarter).localeCompare(String(b.quarter))||String(a.subject).localeCompare(String(b.subject)));
+        $("myGrades").innerHTML=records.map(x=>`<tr><td>${safe(x.schoolYear)}</td><td>${safe(x.quarter)}</td><td>${safe(x.gradeLevel)}</td><td>${safe(x.subject)}</td><td><strong>${safe(x.grade)}</strong></td><td>${safe(x.remarks||"—")}</td></tr>`).join("");
+      }catch(err){$("myGrades").innerHTML=`<tr><td colspan="6">${safe(friendlyError(err))}</td></tr>`;console.error("Grades load error:",err);}
+    }
+
+    async function loadAnnouncements(){
+      try{
+        const snap=await getDocs(query(collection(db,"announcements"),orderBy("createdAt","desc")));
+        $("announcementList").innerHTML=snap.empty?"<p>No announcements have been posted yet.</p>":
+          snap.docs.map(d=>{const x=d.data();return `<div class="item"><h4>${safe(x.title)}</h4><p>${safe(x.body)}</p><p>Posted: ${safe(dateText(x.createdAt))}</p></div>`}).join("");
+      }catch(err){$("announcementList").textContent=friendlyError(err);}
+    }
+
+    async function loadAdminData(){
+      if(!isAdmin)return;
+      show("adminContent",true);show("adminDenied",false);
+      try{
+        const [enroll,req,ann]=await Promise.all([getDocs(query(collection(db,"enrollments"),orderBy("createdAt","desc"))),getDocs(query(collection(db,"documentRequests"),orderBy("createdAt","desc"))),getDocs(query(collection(db,"announcements"),orderBy("createdAt","desc")))]);
+        $("adminEnrollmentCount").textContent=enroll.size;$("adminRequestCount").textContent=req.size;
+        $("adminEnrollments").innerHTML=enroll.empty?'<tr><td colspan="5">No applications.</td></tr>':
+          enroll.docs.map(d=>{const x=d.data();return `<tr><td>${safe(x.studentName)}</td><td>${safe(x.gradeLevel)}</td><td>${safe(x.schoolYear)}</td><td><span class="status ${safe(x.status)}">${safe(x.status)}</span></td><td><select aria-label="Update enrollment status" data-kind="enroll" data-id="${safe(d.id)}"><option ${x.status==="Pending"?"selected":""}>Pending</option><option ${x.status==="Approved"?"selected":""}>Approved</option><option ${x.status==="Rejected"?"selected":""}>Rejected</option><option ${x.status==="Enrolled"?"selected":""}>Enrolled</option></select> <button class="btn small" type="button" data-delete="enrollments" data-id="${safe(d.id)}">Delete</button></td></tr>`}).join("");
+        $("adminRequests").innerHTML=req.empty?'<tr><td colspan="5">No requests.</td></tr>':
+          req.docs.map(d=>{const x=d.data();return `<tr><td>${safe(x.studentEmail)}</td><td>${safe(x.documentType)}</td><td>${safe(x.purpose)}</td><td><span class="status ${safe(x.status)}">${safe(x.status)}</span></td><td><select aria-label="Update request status" data-kind="request" data-id="${safe(d.id)}"><option ${x.status==="Pending"?"selected":""}>Pending</option><option ${x.status==="Approved"?"selected":""}>Approved</option><option ${x.status==="Rejected"?"selected":""}>Rejected</option><option ${x.status==="Completed"?"selected":""}>Completed</option></select> <button class="btn small" type="button" data-delete="documentRequests" data-id="${safe(d.id)}">Delete</button></td></tr>`}).join("");
+        $("adminAnnouncements").innerHTML=ann.empty?"<p>No announcements.</p>":ann.docs.map(d=>{const x=d.data();return `<div class="item"><h4>${safe(x.title)}</h4><p>${safe(x.body)}</p><button class="btn small" type="button" data-delete="announcements" data-id="${safe(d.id)}">Delete</button></div>`}).join("");
+        const gradesSnap=await getDocs(query(collection(db,"grades"),orderBy("schoolYear","desc")));
+        $("adminGrades").innerHTML=gradesSnap.empty?'<tr><td colspan="7">No grade records yet.</td></tr>':
+          gradesSnap.docs.map(d=>{const x=d.data();return `<tr><td>${safe(x.studentName)}</td><td>${safe(x.gradeLevel)}</td><td>${safe(x.schoolYear)}</td><td>${safe(x.quarter)}</td><td>${safe(x.subject)}</td><td>${safe(x.grade)}</td><td>${safe(x.remarks||"—")} <button class="btn small" type="button" data-delete="grades" data-id="${safe(d.id)}">Delete</button></td></tr>`}).join("");
+      }catch(err){message("adminMessage",friendlyError(err),"error");}
+    }
+
+    document.addEventListener("click",async e=>{
+      const button=e.target.closest("button[data-delete]");
+      if(!button)return;
+      if(!isAdmin){alert("Administrator access required.");return;}
+      const kind=button.dataset.delete, id=button.dataset.id;
+      const label={enrollments:"enrollment application",documentRequests:"document request",announcements:"announcement",grades:"grade record"}[kind]||"record";
+      if(!confirm(`Delete this ${label}? This cannot be undone.`))return;
+      try{await deleteDoc(doc(db,kind,id));alert(`${label[0].toUpperCase()+label.slice(1)} deleted.`);loadAdminData();loadAnnouncements();}
+      catch(err){alert(friendlyError(err));}
+    });
+
+    document.addEventListener("change",async e=>{
+      const el=e.target;if(!el.matches("select[data-kind]"))return;
+      if(!isAdmin){alert("Administrator access required.");return;}
+      const col=el.dataset.kind==="enroll"?"enrollments":"documentRequests";
+      try{await updateDoc(doc(db,col,el.dataset.id),{status:el.value,updatedAt:serverTimestamp()});loadAdminData();}
+      catch(err){alert(friendlyError(err));loadAdminData();}
+    });
+
+
+    $("gradeForm").addEventListener("submit",async e=>{
+      e.preventDefault();if(!isAdmin){message("gradeMessage","Administrator access required.","error");return;}
+      setBusy("gradeSubmit",true,"Saving…");
+      try{
+        const uid=$("gUid").value.trim(), schoolYear=$("gSchoolYear").value.trim(), quarter=$("gQuarter").value, subject=$("gSubject").value.trim();
+        const gradeId=[uid,schoolYear,quarter,subject].join("_").replace(/[^a-zA-Z0-9_-]/g,"-");
+        await setDoc(doc(db,"grades",gradeId),{studentUid:uid,studentName:$("gStudentName").value.trim(),gradeLevel:$("gLevel").value,schoolYear,quarter,subject,grade:Number($("gGrade").value),remarks:$("gRemarks").value.trim(),updatedAt:serverTimestamp(),updatedBy:currentUser.uid});
+        message("gradeMessage","Grade saved. If this student is signed in with the matching UID, it will appear in their Grades page.","success");
+        $("gradeForm").reset();$("gSchoolYear").value="2026-2027";loadAdminData();
+      }catch(err){message("gradeMessage",friendlyError(err),"error");}
+      finally{setBusy("gradeSubmit",false);}
+    });
+
+    $("announcementForm").addEventListener("submit",async e=>{
+      e.preventDefault();if(!isAdmin){message("adminMessage","Administrator access required.","error");return;}
+      try{
+        await addDoc(collection(db,"announcements"),{title:$("aTitle").value.trim(),body:$("aBody").value.trim(),createdAt:serverTimestamp(),createdBy:currentUser.uid});
+        $("announcementForm").reset();message("adminMessage","Announcement published.","success");loadAnnouncements();
+      }catch(err){message("adminMessage",friendlyError(err),"error");}
+    });
+  </script>
+</body>
+</html>
